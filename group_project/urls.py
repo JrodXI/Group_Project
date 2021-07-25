@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('playbook_sports.urls')),
-    path('images/', include('images.urls')),
+    # path('images/', include('images.urls')),
 ]
 
 if settings.DEBUG:

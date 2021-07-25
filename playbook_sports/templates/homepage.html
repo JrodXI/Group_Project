@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script
+        src=" https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark danger-color">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Team Schedule</a>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">New Team
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rankings</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">My Team</a>
+                </li>            </ul>
+            </li> -->
+            </ul>
+            <!-- Links -->
+            <form class="form-inline">
+                <div class="md-form my-0">
+                    <a class="form-control mr-sm-2 btn-outline-light" href="#">Logout</a>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <!--/.Navbar-->
+
+    <div class="container">
+        <div class="container-fluid">
+            <h1 class="title">Welcome to the Playbook Sports, User</h1>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Team Name</th>
+                            <th>Sport</th>
+                            <th>E-mail</th>
+                            <th>Join Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a class="form-control btn-outline-light " href="#">Join Team</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div> <!--end float container-->
+    </div> <!--end main container-->
+
+</body>
