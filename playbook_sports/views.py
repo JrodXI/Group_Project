@@ -51,7 +51,7 @@ def home(request):
         "joined_teams" : Team.objects.filter(joined=user),
 		"other_teams": Team.objects.all().exclude(captain=user).exclude(joined=user),
 	}
-    return render(request,"teams.html",context) # Rachel - I just put teams.html as a placeholder. Please change and/or update as you see fit to what you want on your page. (context and all) Also, you don't have to use my CSS classes from my HTML. Figured I'd let you decide - not sure if you're using bootstrap or not. 
+    return render(request,"teams.html",context) 
 
 class HomePageView(ListView):
     model = User, Team
