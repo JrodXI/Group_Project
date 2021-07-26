@@ -47,7 +47,7 @@
                 <form class="form-inline">
                     {% csrf_token %}
                     <div class="md-form my-0">
-                        <a class="form-control mr-sm-2 btn-outline-light" href="#">Logout</a>
+                        <a class="form-control mr-sm-2 btn-outline-light" href="/logout">Logout</a>
                     </div>
                 </form>
             </div>
@@ -57,14 +57,17 @@
         <div class="grid-7 element-animation">
             <!--card-1-->
             <div class="card color-card">
-                <img src="{% static 'css/img/profile.png' %}"
+                <img src="{{user.profile_pic.url}}"
                     alt="profile-pic" class="profile">
-                <h1 class="title"> User 1</h1>
-                <p class="user-info"> Email: </p>
-                <p class="user-info"> Team: </p>
+                <h1 class="title"> {{user.first_name}} {{user.last_name}}</h1>
+                <p class="user-info"> {{user.email}}</p> 
+                {% for team in user_teams %}
+                <p class="user-info"> {{team.team_name}} </p> {% endfor %}
                 <div class="desc top">
-                    <!-- <p>maybe option for bio here</p> -->
-                    <input type="image" src="" alt=""> uplaod image here
+                    <!-- <form method="post" enctype="multipart/form-data">
+                    <p>{{form.profile_pic}} placeholer for editing profile image</p>
+                    </form> -->
+                    <input type="file" src="" alt=""> 
                 </div>
                 <button class="btn color-a top"> Edit Account</button>
 
@@ -76,13 +79,19 @@
 
         <div class="grid-7 element-animation">
             <div class="card color-card-2">
-                <img src="{% static 'css/img/profile.png' %}"                    alt="profile-pic" class="profile">
-                <h1 class="title">Team </h1>
-                <p class="user-info"> team info here</p>
+                <img src="{% static 'css/img/profile.png' %}"alt="profile-pic" class="profile">
+                {% for team in user_teams %}
+                <h1 class="title">{{team.team_name}} </h1> 
+                <p class="user-info"> {{team.team_sport}}</p>
                 <div class="desc top">
-                    <p>team info here</p>
-                </div>
-                <button class="btn color-a top">Edit Team</button>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{form.profile_pic}}</p>
+                        <button class="btn-outline-light" type="submit">update Image</button>
+                    </form>                
+                    </div> {% endfor %}
+                <a class="btn color-a top" href="#">Edit Team</a>
+                <!-- <button class="btn color-a top">Edit Team</button> -->
                 
 
                 <hr >

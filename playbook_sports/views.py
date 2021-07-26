@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from .forms import ProfileForm
 from .models import *
 import bcrypt
 import json
@@ -51,8 +53,27 @@ def home(request):
         "joined_teams" : Team.objects.filter(joined=user),
 		"other_teams": Team.objects.all().exclude(captain=user).exclude(joined=user),
 	}
-    return render(request,"teams.html",context) # Rachel - I just put teams.html as a placeholder. Please change and/or update as you see fit to what you want on your page. (context and all) Also, you don't have to use my CSS classes from my HTML. Figured I'd let you decide - not sure if you're using bootstrap or not. 
+    return render(request,"homepage.html",context) 
+
+
+def profile(request,user_id):
+    user = User.objects.get(id = request.session['user_id'])
+    context={
+        'user': user,
+		"user_teams":Team.objects.filter(captain = user),
+    }
+    return render(request, "profile.html",context)
+
+def logout(request):
+    request.session.flush()
+    return redirect('/')
 
 class HomePageView(ListView):
     model = User, Team
     template_name = 'images.html'
+
+class CreateProfileView(CreateView):
+    model = User
+    form_class = ProfileForm
+    template_name = 'user.html'
+    success_url=reverse_lazy('home')

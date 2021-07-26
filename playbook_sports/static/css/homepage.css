@@ -14,11 +14,12 @@
   .container-fluid {box-shadow: inset 0 0 10px 10px #6d0307;
     background-color: rgb(43, 41, 41);
     padding:50px;
-    width: 1200px;}
+    width: 1200px;
+  }
   .title{
     color:#ffffff;
-    font-family: roboto;
-    weight:300;
+    font-family: Roboto;
+    padding-bottom: 30px;
 }
 .container {
   text-align: center;

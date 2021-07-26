@@ -43,3 +43,8 @@ text-align: center;
 padding: 100px;
 position: relative;
 }
+.messages{
+    background-color: rgb(209, 204, 204);
+    color: red;
+    width: 500px;
+}
