@@ -69,7 +69,7 @@ class Team(models.Model):
     team_sport = models.CharField(max_length=255)
     captain = models.ForeignKey(User, related_name = "teams",on_delete=models.CASCADE)
     joined = models.ManyToManyField(User, related_name = "joined_teams")
-    team_logo = models.ImageField(upload_to='images/')
+    # team_logo = models.ImageField(upload_to='images/')
     objects = TeamManager()
 
     def __str__(self):
