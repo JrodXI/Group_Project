@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script
@@ -34,7 +34,7 @@
                             <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/team_schedule">Team Shedule</a>
+                        <a class="nav-link" href="#">Team Shedule</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Rankings</a>
@@ -57,26 +57,20 @@
         <div class="grid-7 element-animation">
             <!--card-1-->
             <div class="card color-card">
-                {% if user.profile_pic %}
                 <img src="{{user.profile_pic.url}}" alt="profile-pic" class="profile">
-                {% else %}
-                <img src="% static 'css/img/profile.png' " alt="profile-pic" class="profile">
-                {% endif %}
                 <h1 class="title"> {{user.first_name}} {{user.last_name}}</h1>
                 <p class="user-info"> {{user.email}}</p> 
                 {% for team in user_teams %}
                 <p class="user-info"> {{team.team_name}} </p> {% endfor %}
                 <div class="desc top">
-                    <form action="/{{user.id}}/update_profile" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Upload Profile</button>
+                    {{ form.as_p}}
+                    <!--input type="file" src="{{user.profile_pic.name}}" alt=""--> 
+                    <button class="btn-outline-light" type="submit">Upload</button>
                     </form>
                 </div>
-                <br>
-                {% if img_obj %}
-                <h4 class='title'>Successfully uploaded file.</h4>
-                {% endif %}
-                <a  class="btn color-a top"href="/edit_account">Edit Account</a>
+                <button class="btn color-a top"> Edit Account</button>
 
                 <hr>
             </div>
@@ -86,26 +80,17 @@
 
         <div class="grid-7 element-animation">
             <div class="card color-card-2">
+                <img src="{% static 'css/img/profile.png' %}"alt="profile-pic" class="profile">
                 {% for team in user_teams %}
-                {% if team.team_logo  %}
-                <img src="{{team.team_logo.url}}" alt="profile_pic" class="profile">
-                {% else %}
-                <img src="{% static 'css/img/soccer.jpg' %}" alt="profile_pic" class="profile">
-                {% endif %}
                 <h1 class="title">{{team.team_name}} </h1> 
                 <p class="user-info"> {{team.team_sport}}</p>
                 <div class="desc top">
-                    <form action="/{{team.id}}/updatelogo" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update Logo</button>
-
+                        <p>{{form.profile_pic}}</p>
+                        <button class="btn-outline-light" type="submit">update Image</button>
                     </form>                
-                    </div> 
-                    {% endfor %}
-                    {% if team_img_obj %}
-                    <h4 class='title'>Successfully uploaded file.</h4>
-                    {% endif %}
-    
+                    </div> {% endfor %}
                 <a class="btn color-a top" href="#">Edit Team</a>
                 <!-- <button class="btn color-a top">Edit Team</button> -->
                 

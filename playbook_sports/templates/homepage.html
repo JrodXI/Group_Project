@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script
@@ -22,7 +22,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark danger-color">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Team Schedule</a>
+        <a class="navbar-brand" href="/team_schedule">Team Schedule</a>
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
             aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/{{user.id}}/profile">My Account</a>
+                    <a class="nav-link" href="/profile">My Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Rankings</a>
@@ -74,14 +74,21 @@
                     </thead>
                     <tbody>
                         {% for team in user_teams %}
+
                         <tr>
                             <td>{{team.captain.first_name}} {{team.captain.last_name}} </td>
                             <td>{{team.team_name}}</td>
                             <td>{{team.team_sport}}</td>
                             <td>{{team.captain.email}}</td>
-                            <td><a class="btn btn-sm btn-outline-light " href="#">Edit</a> <a class="btn btn-sm btn-outline-light " href="#">Remove</a></td>
-                        </tr>
-                        {% endfor %}
+                            <td>{% if team.captain.id == user.id  %}
+                                <a class="btn btn-sm btn-outline-light " href="#">Edit</a> {% endif %}
+                                {% for join_team in joined_teams %}    
+                                    {% if join_team.id == team.id %} 
+                                        <a class="btn btn-sm btn-outline-light " href="/{{team.id}}/remove">Remove</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>{% endfor %} 
                     </tbody>
                 </table>
         </div> <!--end float container-->
@@ -105,7 +112,7 @@
                         <td>{{team.team_name}}</td>
                         <td>{{team.team_sport}}</td>
                         <td>{{team.captain.email}}</td>
-                        <td><a class="form-control btn-outline-light " href="#">Join Team</a></td>
+                        <td><a class="form-control btn-outline-light " href="/{{team.id}}/join">Join Team</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
