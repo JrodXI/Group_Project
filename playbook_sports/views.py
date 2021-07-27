@@ -41,17 +41,6 @@ def login(request):
             request.session['greeting'] = user.first_name
             return redirect('/home')
 
-# def home(request):
-#     if 'user_id' not in request.session:
-#         return redirect("/")
-#     user = User.objects.get(id = request.session['user_id'])
-#     context = {
-# 		"user": user,
-# 		"user_teams":Team.objects.filter(captain = user),
-#         "joined_teams" : Team.objects.filter(joined=user),
-# 		"other_teams": Team.objects.all().exclude(captain=user).exclude(joined=user),
-# 	}
-#     return render(request,"teams.html",context) 
 
 def createteam(request):
     if request.method == "POST":
