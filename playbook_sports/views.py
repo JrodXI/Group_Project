@@ -90,7 +90,7 @@ def profile(request):
     return render(request, "profile.html",context)
 
 
-def update_profile(request, user_id):
+def update_profile(request, user_id):#updates img on profile page
     user = User.objects.get(id = user_id)
 
     if request.method == 'POST':
@@ -102,13 +102,7 @@ def update_profile(request, user_id):
         return redirect("/profile")
 
 
-def team_schedule(request):
-    return render(request, "team_schedule.html")
-
-def edit_account(request):
-    return render(request, "update_profile.html")
-
-def update_logo(request,team_id):
+def update_logo(request,team_id): #updates team logo from profile page
     user = User.objects.get(id = request.session['user_id'])
     if request.method == 'POST':
         logoform = TeamForm(request.POST, request.FILES)
@@ -116,28 +110,34 @@ def update_logo(request,team_id):
             logoform.update(team_id)
         return redirect("/profile")
 
-def join(request, team_id):
+def join(request, team_id): #homepage button/action
     user = User.objects.get(id = request.session['user_id'])
     joined_team = Team.objects.get(id= team_id)
     joined_team.joined.add(user)
     joined_team.save()
     return redirect ('/home')
 
-def remove(request, team_id):
+def remove(request, team_id):#homepage button/action
     user = User.objects.get(id = request.session['user_id'])
     joined_team = Team.objects.get(id= team_id)
     joined_team.joined.remove(user)
     joined_team.save()
     return redirect ('/home')
 
-
-
-
-
-
 def logout(request):
     request.session.flush()
     return redirect('/')
+
+#just paths so I could navigate for frontend. Feel free to change as needed
+def team_schedule(request):
+    return render(request, "team_schedule.html")
+
+def edit_account(request):
+    return render(request, "update_profile.html")
+
+def edit_team(request):
+    return render(request, "update_team.html")
+
 
 class HomePageView(ListView):
     model = User, Team

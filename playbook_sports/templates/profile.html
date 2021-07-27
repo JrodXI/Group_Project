@@ -69,7 +69,7 @@
                 <div class="desc top">
                     <form action="/{{user.id}}/update_profile" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Upload Profile</button>
+                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Upload</button>
                     </form>
                 </div>
                 <br>
@@ -97,20 +97,15 @@
                 <div class="desc top">
                     <form action="/{{team.id}}/updatelogo" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update Logo</button>
-
-                    </form>                
-                    </div> 
+                        {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update</button>
+                    </form>
+                    <a class="btn color-a top" href="/edit_team">Edit Team</a> <!--still needs to be updated with a path with team id-->
+                    </div>
+                    <hr >
                     {% endfor %}
                     {% if team_img_obj %}
                     <h4 class='title'>Successfully uploaded file.</h4>
                     {% endif %}
-    
-                <a class="btn color-a top" href="#">Edit Team</a>
-                <!-- <button class="btn color-a top">Edit Team</button> -->
-                
-
-                <hr >
             </div>
         </div>
     </div>

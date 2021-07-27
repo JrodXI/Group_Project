@@ -11,6 +11,9 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <script
         src=" https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -81,7 +84,7 @@
                             <td>{{team.team_sport}}</td>
                             <td>{{team.captain.email}}</td>
                             <td>{% if team.captain.id == user.id  %}
-                                <a class="btn btn-sm btn-outline-light " href="#">Edit</a> {% endif %}
+                                <a class="btn btn-sm btn-outline-light " href="/edit_team">Edit</a> {% endif %}
                                 {% for join_team in joined_teams %}    
                                     {% if join_team.id == team.id %} 
                                         <a class="btn btn-sm btn-outline-light " href="/{{team.id}}/remove">Remove</a>

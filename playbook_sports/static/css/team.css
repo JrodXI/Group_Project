@@ -1,8 +1,7 @@
 body{
-    background-image: url(../css/img/hooping.jpg);background-size: cover;
+    background-image: url(../css/img/teambackground2.jpg);background-size: cover;
 background-color: #353535;
 }
-
 .container{
     padding:100px 50px;
     height: 700px;
@@ -10,12 +9,13 @@ background-color: #353535;
 
 }
 .header{
-    background-color: #630d0d;
-    font-family: 'Abril Fatface', cursive;
+    background-color: #6d1e1e;
+    font-family: 'Spartan', sans-serif;    
     color: #f5f0f0;
     padding: 20px;
 }
 
 .container-fluid{
-    box-shadow: inset 0 0 10px 10px #5f1111; padding:100px;width: 1200px;
+    box-shadow: inset 0 0 10px 10px #5d0c0c; padding:100px;width: 1200px;
+    
 }
