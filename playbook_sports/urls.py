@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import HomePageView, newteam
+from .views import HomePageView
 
 urlpatterns = [
     path('', views.index),
