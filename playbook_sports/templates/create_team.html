@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlaybookSports</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'global css/createteam.css' %}">  
+</head>
+
+<body>
+    <div id='wrap'>
+        <a href="/home">Home</a>|<a href="/MyAccount">My account</a>
+        <a class='logout' href="/">Log Out</a>
+        <h1>Create Team</h1>
+        {% if messages %}
+            <div id='errors'>
+                {% for message in messages %}
+                    <p>- {{message}} -</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class='form-box'>
+            <form action="create_team" method=POST>
+                <div class='form-row'>
+                    Team Name: <input class='form' type="text" class="form-control" id="team_name" placeholder="Enter team name" name='team_name'>
+                    <!-- Team Sport: <input class='form' type="text" class="form-control" id="team_sport" placeholder="Enter coach/captain name" name='team_sport'> -->
+                    <label> Team Sport </label>
+                    <select name="team_sport" id="team_sport">
+                        <option value="Basketball">Basketball</option>
+                        <option value="Football">Football</option>
+                        <option value="Baseball">Baseball</option>
+                        <option value="Hockey">Hockey</option>
+                        <option value="Soccer">Soccer</option>
+
+                    </select>
+                    Coach/Captain: <input class='form' type="text" class="form-control" id="captain" placeholder="Enter coach/captain name" name='teams'>
+                </div>
+                <input class='button' type="submit" value='Add Team'>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
