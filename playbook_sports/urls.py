@@ -6,6 +6,10 @@ urlpatterns = [
     path('', views.index),
     path('register', views.register),
     path('login', views.login),
+    # path('images', HomePageView.as_view(), name='images'),
+    path('create_team', views.createteam),
+    path('new_team', views.newteam),
+    path('team_rankings', views.teamrankings),
     path('home', views.home),
     path('images', HomePageView.as_view(), name='images.html'),
     path('profile',views.profile),
@@ -16,8 +20,7 @@ urlpatterns = [
     path('<int:team_id>/updatelogo',views.update_logo), #this is to update logo on profile page
     path('<int:team_id>/join',views.join), #this is for homepage table 
     path('<int:team_id>/remove',views.remove), #this is for homepage table
-    path('logout',views.logout),
-
+    path('logout',views.logout)
 ]
 
 #for anyone needing to add backend data feel free to change what you need.
