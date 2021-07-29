@@ -12,10 +12,18 @@ background-color: #353535;
     background-color: #6d1e1e;
     font-family: 'Spartan', sans-serif;    
     color: #f5f0f0;
-    padding: 20px;
+    padding: 10px;
 }
 
 .container-fluid{
     box-shadow: inset 0 0 10px 10px #5d0c0c; padding:100px;width: 1200px;
     
+}
+.messages{
+    background-color: rgb(209, 204, 204);
+    color: red;
+    width: 500px;
+}
+#exampleFormControlFile1{
+    color: white;
 }

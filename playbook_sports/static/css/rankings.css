@@ -1,0 +1,31 @@
+body{
+background-color: rgb(59, 58, 58);
+background-image: url(../css/img/background4.jpg);
+background-size: cover;
+}
+*{
+/* font-family:Roboto; */
+-webkit-box-sizing: border-box; 
+-moz-box-sizing: border-box; 
+box-sizing: border-box;
+}
+
+
+.container-fluid {box-shadow: inset 0 0 10px 10px #5f1215;
+/* background-color: rgb(70, 58, 58); */
+padding:25px;
+width: 1200px;
+}
+.title{
+color:#ffffff;
+font-family: 'Abril Fatface', cursive;
+/* font-family: Roboto; */
+padding-bottom: 15px;
+}
+.container {
+text-align: center;
+width: 960px;
+margin: 0 auto;
+padding: 100px 0px;
+position: relative;
+}
