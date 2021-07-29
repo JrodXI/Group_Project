@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script
@@ -17,9 +20,9 @@
 
 <body>
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark ">
+        <nav class="navbar navbar-expand-lg navbar-light ">
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="/home">Home</a>
+            <a class="navbar-brand" href="home">Home</a>
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +33,14 @@
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">My Team
+                        <a class="nav-link" href="new_team">Create Team
                             <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/team_schedule">Team Shedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Rankings</a>
+                        <a class="nav-link" href="team_rankings">Rankings</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">My Team</a>
@@ -53,7 +56,7 @@
             </div>
         </nav>
     <div class="container">
-        <h1 class="title">My Account</h1>
+        <h1 class=" header text-center">My Account</h1>
         <div class="grid-7 element-animation">
             <!--card-1-->
             <div class="card color-card">
@@ -66,13 +69,13 @@
                 <p class="user-info"> {{user.email}}</p> 
                 {% for team in user_teams %}
                 <p class="user-info"> {{team.team_name}} </p> {% endfor %}
-                <div class="desc top">
+                <div class="form-group text-light">
                     <form action="/{{user.id}}/update_profile" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Upload</button>
+                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Update</button>
                     </form>
                 </div>
-                <br>
+                
                 {% if img_obj %}
                 <h4 class='title'>Successfully uploaded file.</h4>
                 {% endif %}
@@ -92,9 +95,11 @@
                 {% else %}
                 <img src="{% static 'css/img/soccer.jpg' %}" alt="profile_pic" class="profile">
                 {% endif %}
-                <h1 class="title">{{team.team_name}} </h1> 
+                <h1 class="title">{{team.team_name}} </h1>
+                <br>
+                <br>
                 <p class="user-info"> {{team.team_sport}}</p>
-                <div class="desc top">
+                <div class="form-group text-light">
                     <form action="/{{team.id}}/updatelogo" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update</button>
