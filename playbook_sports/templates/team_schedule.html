@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
     <script
         src=" https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
@@ -21,117 +21,95 @@
 </head>
 
 <body>
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="/home">Home</a>
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="">New Team
-                        <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">My Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Rankings</a>
-                </li>
-                <!-- <li class="nav-item">
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark ">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="home">Home</a>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="new_team">Create Team
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="team_rankings">Rankings</a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#">My Team</a>
                         </li> -->
-            </ul>
-            <!-- Links -->
-            <form class="form-inline">
-                {% csrf_token %}
-                <div class="md-form my-0">
-                    <a class="form-control mr-sm-2 btn-outline-light" href="/logout">Logout</a>
+                    </ul>
+                    <!-- Links -->
+                    <form class="form-inline">
+                        {% csrf_token %}
+                        <div class="md-form my-0">
+                            <a class="form-control mr-sm-2 btn-outline-light" href="/logout">Logout</a>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </nav>
-
+            </nav>
+    
     <div class="container col-10">
         <h1 class='title'>Team Schedule</h1>
-        <div class='row col-10 justify-content-between"'>
-            <input type="search" name="search" placeholder="Search here" autocomplete="off">
-            <button class='btn btn-outline-light' type="submit">Search</button>
-            <!-- <button class='btn btn-outline-light' type="submit">Rankings</button> -->
-        </div>
-        <!--end first row-->
-        <br>
-        <div>
-            <table class="table table-dark">
-                <form action="/add_schedule" method="POST">
-                    {% csrf_token %}
+            <div class='row col-10 justify-content-between"'>
+                <input type="search" name="search"placeholder="Search here" autocomplete="off">
+                <button class='btn btn-outline-light' type="submit" >Search</button>
+            </div> <!--end first row-->
+            <br>
+            <div>
+                <table class="table table-dark">
                     <thead>
                         <tr>
                             <th>Team Name</th>
                             <th>Sport</th>
                             <th>Date</th>
                             <th>Opponent</th>
-                            <th>RSVP</th>
-                            <th></th>
+                            <th>Result</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="text" name="schedule_team_name"></td>
-                            <td>
-                                <select class="custom-select" name="schedule_team_sport">
-                                    <option selected disabled>Select Team Sport</option>
-                                    <option value="Basketball">Basketball</option>
-                                    <option value="Football">Football</option>
-                                    <option value="Baseball">Baseball</option>
-                                    <option value="Hockey">Hockey</option>
-                                    <option value="Soccer">Soccer</option>
-                                </select>
-                            </td>
-
-                            <td><input type="date" name="schedule_date"></td>
-                            <td><input type="text" name="schedule_opponent"></td>
-
-
-                            <td><input type="checkbox" name="rsvp" value="rsvp"></td>
-                            <td><input type="submit"></td>
-                        </tr>
+                    <tr>
+                        <td>Roc Boys</td>
+                        <td>Soccer</td>
+                        <td>8/1/21</td>
+                        <td>FC Barcelona</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Roc Boys</td>
+                        <td>Soccer</td>
+                        <td>8/8/21</td>
+                        <td>Chelsea</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Roc Boys</td>
+                        <td>Soccer</td>
+                        <td>8/15/21</td>
+                        <td>Liverpool</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Roc Boys</td>
+                        <td>Soccer</td>
+                        <td>8/22/21</td>
+                        <td>Rockford United</td>
+                        <td>TBD</td>
+                    </tr>
                     </tbody>
-                </form>
-            </table>
-
-
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th>Team Name</th>
-                        <th>Sport</th>
-                        <th>Date</th>
-                        <th>Opponent</th>
-                        <th>RSVP</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--end table div-->
-    </div>
-    <!--end of container-->
+                    </table>
+                    </form>
+            </div> <!--end table div-->
+    </div> <!--end of container-->
 </body>
 
 </html>

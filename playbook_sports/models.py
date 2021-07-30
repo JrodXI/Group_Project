@@ -14,8 +14,10 @@ class UserManager(models.Manager):
             errors['last_name'] = "Last name must be at least two characters long"
         #email matches format
         email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        
         if len(postData['email'])==0:
             errors['email'] = "You must enter an email"
+            
         elif not email_regex.match(postData['email']):
             errors['email'] = "Must be a valid email"
         #email is unique
@@ -23,7 +25,7 @@ class UserManager(models.Manager):
         if len(current_users) > 0:
             errors['duplicate'] = "That email is already in use"
         #password was enteres (less than 8) and reconfirm password matches
-        if len(postData['password']) < 9:
+        if len(postData['password']) < 8:
             errors['password'] = "Password must be at least 8 characters long"
             
         if postData['password'] != postData['confirm_password']:
@@ -40,6 +42,9 @@ class UserManager(models.Manager):
         if len(postData['password']) == 0:
             errors['password'] = "Password must be entered"
         #if the email and password match
+        if not existing_user:
+            errors['user'] = "User doesn't exist"
+            
         elif bcrypt.checkpw(postData['password'].encode(), existing_user[0].password.encode()) != True:
             errors['password'] = "Email and password do not match"
         return errors

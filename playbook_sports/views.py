@@ -55,7 +55,8 @@ def createteam(request):
         new_team = Team.objects.create(
             team_name=request.POST['team_name'],
             team_sport=request.POST['team_sport'],
-            captain = User.objects.get(id=request.session['user_id'])
+            captain = User.objects.get(id=request.session['user_id']),
+            team_logo = request.FILES['team_logo']
             )
         captain = User.objects.get(id=request.session['user_id'])
         new_team.joined.add(captain)
