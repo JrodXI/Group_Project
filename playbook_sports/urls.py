@@ -13,8 +13,10 @@ urlpatterns = [
     path('images', HomePageView.as_view(), name='images.html'),
     path('profile',views.profile),
     path('team_schedule',views.team_schedule),
-    path('edit_account',views.edit_account),
-    path('edit_team', views.edit_team),
+    path('update_profile_page',views.update_profile_page),
+    path('<int:user_id>/edit_account',views.edit_account),
+    path('<int:team_id>/update_team_page',views.update_team_page),
+    path('<int:team_id>/edit_team', views.edit_team),
     path('<int:user_id>/update_profile',views.update_profile), #this is for updating the image on the profile page
     path('<int:team_id>/updatelogo',views.update_logo), #this is to update logo on profile page
     path('<int:team_id>/join',views.join), #this is for homepage table 

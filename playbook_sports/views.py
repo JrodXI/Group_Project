@@ -20,7 +20,7 @@ def register(request):
             for key, value in errors.items(): 
                 messages.error(request, value)
             return redirect('/')
-        hashed_pw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+        hashed_pw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode('utf-8')
         user = User.objects.create(
             first_name = request.POST['first_name'],
             last_name = request.POST['last_name'],
@@ -162,12 +162,44 @@ def logout(request):
 def team_schedule(request):
     return render(request, "team_schedule.html")
 
-def edit_account(request):
-    return render(request, "update_profile.html")
+def update_profile_page(request):
+    user = User.objects.get(id = request.session['user_id'])
+    context={
+        'user': user,
+    }
+    return render(request, "update_profile.html", context)
 
-def edit_team(request):
-    return render(request, "update_team.html")
+def edit_account(request, user_id):
+    if 'user_id' not in request.session:
+        return redirect("/")
+    else:
+        to_update = User.objects.get(id=user_id)
+        to_update.first_name = request.POST['first_name']
+        to_update.last_name = request.POST['last_name']
+        to_update.email = request.POST['email']
+        to_update.password = bcrypt.hashpw(request.POST['updated_password'].encode(), bcrypt.gensalt()).decode('utf-8')
+        to_update.profile_pic = request.FILES['profile_pic']
+        to_update.save()
+        return redirect('/profile')
 
+def update_team_page(request, team_id):
+    team = Team.objects.get(id=team_id)
+    context={
+        'team': team
+    }
+    return render(request, "update_team.html", context)
+
+def edit_team(request, team_id):
+    if 'user_id' not in request.session:
+        return redirect("/")
+    else:
+        to_update = Team.objects.get(id=team_id)
+        to_update.team_name = request.POST['team_name']
+        to_update.team_sport = request.POST['team_sport']
+        to_update.teams = request.POST['captain']
+        to_update.team_logo = request.FILES['team_logo']
+        to_update.save()
+        return redirect('/profile')
 
 class HomePageView(ListView):
     model = User, Team
