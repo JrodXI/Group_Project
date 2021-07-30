@@ -51,10 +51,14 @@ def createteam(request):
         if len(errors):
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('New_Team')
-        new_team = Team.objects.create(team_name=request.POST['team_name'], team_sport=request.POST['team_sport'], captain=request.POST['teams'])
-        user = User.objects.get(id=request.session['user_id'])
-        new_team.joined.add(user)
+            return redirect('/new_team')
+        new_team = Team.objects.create(
+            team_name=request.POST['team_name'],
+            team_sport=request.POST['team_sport'],
+            captain = User.objects.get(id=request.session['user_id'])
+            )
+        captain = User.objects.get(id=request.session['user_id'])
+        new_team.joined.add(captain)
         request.session['team_id'] = new_team.id
         return redirect('/home')
     return redirect('New_Team')
@@ -122,7 +126,6 @@ def profile(request):
 
 def update_profile(request, user_id):#updates img on profile page
     user = User.objects.get(id = user_id)
-
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -154,6 +157,10 @@ def remove(request, team_id):#homepage button/action
     joined_team.save()
     return redirect ('/home')
 
+def delete(request, team_id):
+    Team.objects.get(id=team_id).delete()
+    return redirect('/home')
+
 def logout(request):
     request.session.flush()
     return redirect('/')
@@ -170,8 +177,12 @@ def update_profile_page(request):
     return render(request, "update_profile.html", context)
 
 def edit_account(request, user_id):
-    if 'user_id' not in request.session:
-        return redirect("/")
+    if request.method == "POST":
+        errors = User.objects.update_validator(request.POST)
+        if len(errors):
+            for key, value in errors.items(): 
+                messages.error(request, value)
+            return redirect('/update_profile_page')
     else:
         to_update = User.objects.get(id=user_id)
         to_update.first_name = request.POST['first_name']
@@ -190,16 +201,19 @@ def update_team_page(request, team_id):
     return render(request, "update_team.html", context)
 
 def edit_team(request, team_id):
-    if 'user_id' not in request.session:
-        return redirect("/")
-    else:
-        to_update = Team.objects.get(id=team_id)
-        to_update.team_name = request.POST['team_name']
-        to_update.team_sport = request.POST['team_sport']
-        to_update.teams = request.POST['captain']
-        to_update.team_logo = request.FILES['team_logo']
-        to_update.save()
-        return redirect('/profile')
+    if request.method == "POST":
+        errors = Team.objects.team_validator(request.POST)
+        if len(errors):
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'/{team_id}/update_team_page')
+        else:
+            to_update = Team.objects.get(id=team_id)
+            to_update.team_name = request.POST['team_name']
+            to_update.team_sport = request.POST['team_sport']
+            to_update.team_logo = request.FILES['team_logo']
+            to_update.save()
+            return redirect('/profile')
 
 class HomePageView(ListView):
     model = User, Team

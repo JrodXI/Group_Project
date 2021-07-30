@@ -59,6 +59,17 @@
     <div class="container text-center">
         <div class='container-fluid'>
             <h1 class=" header">Update Profile</h1>
+            
+            <div class=" messages text-center ">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    {% if message.tags %} <li class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            
             <form class="form-group" action="/{{ user.id }}/edit_account" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset>

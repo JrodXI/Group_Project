@@ -85,7 +85,7 @@
         </div>
 
         <!--card-2-->
-        
+
         <div class="grid-7 element-animation">
             <div class="card color-card-2">
                 {% for team in user_teams %}
@@ -94,7 +94,7 @@
                 {% else %}
                 <img src="{% static 'css/img/soccer.jpg' %}" alt="profile_pic" class="profile">
                 {% endif %}
-                <h1 class="title">{{team.team_name}} </h1>
+                <h1 class="title">{{team.team_name}}</h1>
                 <br>
                 <br>
                 <p class="user-info"> {{team.team_sport}}</p>
@@ -104,7 +104,6 @@
                         {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update</button>
                     </form>
                     <a class="btn color-a top" href="/{{ team.id }}/update_team_page">Edit Team</a>
-                    <!--still needs to be updated with a path with team id-->
                 </div>
                 <hr>
                 {% endfor %}
@@ -118,10 +117,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-    
-    
-    
-    
+
+
+
+
 </body>
 
 </html>

@@ -21,6 +21,7 @@ urlpatterns = [
     path('<int:team_id>/updatelogo',views.update_logo), #this is to update logo on profile page
     path('<int:team_id>/join',views.join), #this is for homepage table 
     path('<int:team_id>/remove',views.remove), #this is for homepage table
+    path('<int:team_id>/delete',views.delete),
     path('logout',views.logout)
 ]
 

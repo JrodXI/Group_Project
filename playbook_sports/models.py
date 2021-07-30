@@ -23,8 +23,9 @@ class UserManager(models.Manager):
         if len(current_users) > 0:
             errors['duplicate'] = "That email is already in use"
         #password was enteres (less than 8) and reconfirm password matches
-        if len(postData['password']) < 8:
+        if len(postData['password']) < 9:
             errors['password'] = "Password must be at least 8 characters long"
+            
         if postData['password'] != postData['confirm_password']:
             errors['mismatch'] = "Your passwords do not match"
         return errors
@@ -42,12 +43,25 @@ class UserManager(models.Manager):
         elif bcrypt.checkpw(postData['password'].encode(), existing_user[0].password.encode()) != True:
             errors['password'] = "Email and password do not match"
         return errors
+        
+    def update_validator(self, postData):
+        errors = {}
+        
+        if len(postData['first_name']) < 2:
+            errors['first_name'] = "First name must be at least two characters long"
+        if len(postData['last_name']) < 2:
+            errors['last_name'] = "Last name must be at least two characters long"
+        if len(postData['email']) == 0:
+            errors['email'] = "Email must be entered"
+        if len(postData['updated_password']) == 0:
+            errors['updated_password'] = "Password must be entered"
+        return errors
 
 class TeamManager(models.Manager):
     def team_validator(self, postData):
         errors = {}
         if len(postData['team_name']) < 3:
-            errors['team_name'] = "Team Name must at least 3 characters long."
+            errors['team_name'] = "Team Name must at least 3 characters long"
         return errors
 
 # Create your models here.
