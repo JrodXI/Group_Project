@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script
+        src=" https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+
+<body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="home">Home</a>
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="new_team">Create Team
+                            <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team_schedule">Team Shedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team_rankings">Rankings</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">My Team</a>
+                    </li> -->
+                </ul>
+                <!-- Links -->
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <div class="md-form my-0">
+                        <a class="form-control mr-sm-2 btn-outline-light" href="/logout">Logout</a>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    <div class="container">
+        <h1 class=" header text-center">My Account</h1>
+        <div class="grid-7 element-animation">
+            <!--card-1-->
+            <div class="card color-card">
+                {% if user.profile_pic %}
+                <img src="{{user.profile_pic.url}}" alt="profile-pic" class="profile">
+                {% else %}
+                <img src="% static 'css/img/profile.png' " alt="profile-pic" class="profile">
+                {% endif %}
+                <h1 class="title"> {{user.first_name}} {{user.last_name}}</h1>
+                <p class="user-info"> {{user.email}}</p> 
+                {% for team in user_teams %}
+                <p class="user-info"> {{team.team_name}} </p> {% endfor %}
+                <div class="form-group text-light">
+                    <form action="/{{user.id}}/update_profile" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.profile_pic }}<button class="btn-outline-light" type="submit">Update</button>
+                    </form>
+                </div>
+                
+                {% if img_obj %}
+                <h4 class='title'>Successfully uploaded file.</h4>
+                {% endif %}
+                <a  class="btn color-a top"href="/edit_account">Edit Account</a>
+
+                <hr>
+            </div>
+        </div>
+
+        <!--card-2-->
+
+        <div class="grid-7 element-animation">
+            <div class="card color-card-2">
+                {% for team in user_teams %}
+                {% if team.team_logo  %}
+                <img src="{{team.team_logo.url}}" alt="profile_pic" class="profile">
+                {% else %}
+                <img src="{% static 'css/img/soccer.jpg' %}" alt="profile_pic" class="profile">
+                {% endif %}
+                <h1 class="title">{{team.team_name}} </h1>
+                <br>
+                <br>
+                <p class="user-info"> {{team.team_sport}}</p>
+                <div class="form-group text-light">
+                    <form action="/{{team.id}}/updatelogo" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ logoform.team_logo }}<button class="btn-outline-light" type="submit">Update</button>
+                    </form>
+                    <a class="btn color-a top" href="/edit_team">Edit Team</a>
+                    </div>
+                    <hr >
+                    {% endfor %}
+                    {% if team_img_obj %}
+                    <h4 class='title'>Successfully uploaded file.</h4>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+
+
+
+
+</body>
+
+</html>

@@ -6,60 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login_and_reg.css' %}">
     <title>Playbook Sports League</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-5">
-                <h1>Register</h1>
-                <form action="/register" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input name="first_name" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input name="last_name" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input name="email" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input name="password" type="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input name="confirm_password" type="password">
-                    </div>
-                    <div class="form_group">
-                        <button class="btn btn-primary" type="submit">Register</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col-5">
-                <h1>Log In</h1>
-                <form action="/login" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input name="email" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input name="password" type="password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Log In</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        <h1 class='header'>Playbook Sports League App</h1>
+        <div class="container">
+            <div class="container-fluid">
+                <div class=" messages text-center ">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="header">Register</h1>
+                        <form action="/register" method="POST">
+                            {% csrf_token %}
+                            <fieldset>
+                            <div class="form-group">
+                                <input name="first_name" type="text"class="form-control input-lg text-center" placeholder="Please enter First name"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input name="last_name" type="text"class="form-control input-lg text-center" placeholder="Please enter Last name"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input name="email" type="text"class="form-control input-lg text-center" placeholder="Please enter E-mail"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password"class="form-control input-lg text-center" placeholder="Enter Password"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input name="confirm_password" type="password"class="form-control input-lg text-center" placeholder="Confirm password"
+                                autocomplete="off">
+                            </div>
+                            <div class="form_group">
+                                <button class="btn btn-outline-light" type="submit">Register</button>
+                            </div>
+                        </form>
+                        </fieldset>
+                    </div><!--end class col-6-->
+                    <div class="col-6">
+                        <fieldset>
+                        <h1 class="header-2">Log In</h1>
+                        <form action="/login" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input name="email" type="text"class="form-control input-lg text-center" placeholder="Login with Email"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password"class="form-control input-lg text-center" placeholder="Enter Your Password"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-outline-light" type="submit">Log In</button>
+                            </div>
+                        </form>
+                        </fieldset>
+                    </div><!--end class col-4-->
+                </div><!--end row-->
+            </div><!--end contianer-fluid-->
+        </div><!--end container div-->
 </body>
 </html>

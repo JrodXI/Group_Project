@@ -1,0 +1,112 @@
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Rankings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <script
+        src=" https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/rankings.css' %}">
+
+</head>
+
+<body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark danger-color">
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="team_schedule">Team Schedule</a>
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="new_team"> Create Team
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team_rankings">Rankings</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">My Team</a>
+                    </li>            </ul>
+                </li> -->
+                </ul>
+                <!-- Links -->
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <a class="form-control mr-sm-2 btn-outline-light" href="logout">Logout</a>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <!--/.Navbar-->
+    
+    <div class="container">
+        <div class="container-fluid">
+            <h1 class=" title text-center">Team Rankings</h1>
+            <div class='row col-10 justify-content-between"'>
+                <input type="search" name="search"placeholder="Search here" autocomplete="off">
+                <button class='btn btn-outline-light' type="submit" >Search</button>
+            </div> <!--end first row-->
+            <br>
+                <table class="col-10 table table-dark">
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team Name</th>
+                        <th>Record</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Roc Boys FC</td>
+                        <td>0-0-0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FC Barcelona</td>
+                        <td>0-0-0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chelsea</td>
+                        <td>0-0-0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Liverpool</td>
+                        <td>0-0-0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Rockford United</td>
+                        <td>0-0-0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!--end container-fluid-->
+    </div> <!--end container-->
+</body>
+</html>
