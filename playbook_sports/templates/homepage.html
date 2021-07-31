@@ -54,7 +54,7 @@
             <!-- Links -->
             <form class="form-inline">
                 <div class="md-form my-0">
-                    <a class="form-control mr-sm-2 btn-outline-light" href="#">Logout</a>
+                    <a class="form-control mr-sm-2 btn-outline-light" href="logout">Logout</a>
                 </div>
             </form>
         </div>
@@ -83,7 +83,8 @@
                             <td>{{team.team_sport}}</td>
                             <td>{{team.captain.email}}</td>
                             <td>{% if team.captain.id == user.id  %}
-                                <a class="btn btn-sm btn-outline-light " href="/edit_team">Edit</a> {% endif %}
+                                <a class="btn btn-sm btn-outline-light" href="/edit_team">Edit</a>
+                                {% endif %}
                                 {% for join_team in joined_teams %}    
                                     {% if join_team.id == team.id %} 
                                         <a class="btn btn-sm btn-outline-light " href="/{{team.id}}/remove">Remove</a>
